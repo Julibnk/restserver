@@ -2,8 +2,13 @@ require("./config/config")
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+
+
 const app = express();
 
+// app.use siempre se ejecuta 
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
@@ -13,39 +18,19 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(bodyParser.json());
 
-app.get('/usuario', function (req, res) {
-    res.json('getusuario')
-})
-
-app.post('/usuario', function (req, res) {
-
-    let body = req.body;
-
-    if (body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: 'El nombre es necesario'
-        });
-    } else {
-        res.json({
-            persona: body
-        });
-    }
+// Añade las rutas de usuario
+app.use(require('./routes/usuario'));
 
 
-    // res.json('post Usuario')
-})
 
-app.put('/usuario/:id', function (req, res) {
-    let id = req.params.id;
-    res.json({
-        id
-    })
-})
+mongoose.connect(process.env.URLDB, 
+    { useNewUrlParser: true,
+      useUnifiedTopology: true, 
+      useCreateIndex: true }, (err, res) => {
+    if (err) throw err;
 
-app.delete('/usuario', function (req, res) {
-    res.json('delete Usuario')
-})
+    console.log('BBDD online');
+});
 
 
 app.listen(process.env.PORT, () => {

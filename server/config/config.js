@@ -23,3 +23,18 @@ if (process.env.NODE_ENV === 'dev'){
 }
 
 process.env.URLDB = urlDB;
+
+// ================================
+// Vencimiento del token
+// ================================
+// 60 segundos 
+// * 60 minutos
+// * 24 h 
+// * 30 dias
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+
+// ================================
+// Seed del token
+// ================================
+process.env.SEED = process.env.SEED || 'Hackea-esto-sacomierda';

@@ -4,8 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-
-
 const app = express();
 
 // app.use siempre se ejecuta 
@@ -18,10 +16,8 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(bodyParser.json());
 
-// Añade las rutas de usuario
-app.use(require('./routes/usuario'));
-
-
+// Configuracion global de rutas
+app.use(require('./routes/index'));
 
 mongoose.connect(process.env.URLDB, 
     { useNewUrlParser: true,

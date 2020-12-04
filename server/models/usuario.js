@@ -44,7 +44,6 @@ let usuarioSchema = new Schema({
 });
 
 // Sobreescribe el metodo para transformar un documento usuario a JSON
-
 usuarioSchema.methods.toJSON = function() {
    
     let user = this;

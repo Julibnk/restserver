@@ -94,12 +94,14 @@ app.post('/google', async (req, res) => {
     let googleUser = await verify(token)
         .catch(e => {
             return res.status(403).json({
-                ok: false,
-                err: e
-            });
+                    ok: false,
+                    err: e
+                });
         });
 
-    Usuario.findOne({ email: googleUser.email }, (err, usuarioDB) => {
+    Usuario.findOne({
+        email: googleUser.email
+    }, (err, usuarioDB) => {
 
         if (err) {
             return res.status('500').json({
@@ -120,7 +122,7 @@ app.post('/google', async (req, res) => {
                     }
                 });
 
-            // El usuario es google
+                // El usuario es google
             } else {
                 // Genera el token con la semilla y la caducidad de las variables de entorno
                 let token = jwt.sign({
@@ -136,7 +138,7 @@ app.post('/google', async (req, res) => {
                 })
             }
 
-        // El usuario no existe
+            // El usuario no existe
         } else {
 
             let usuario = new Usuario();

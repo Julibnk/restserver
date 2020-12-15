@@ -28,8 +28,8 @@ app.get('/categoria', verificaToken, (req, res) => {
         res.status(200).json({
             ok: true,
             categorias
-        })
-    })
+        });
+    });
 
 });
 
@@ -46,16 +46,16 @@ app.get('/categoria/:id', verificaToken, (req, res) => {
                 err: {
                     message: 'No se ha encontrado la categoria'
                 }
-            })
+            });
         }
 
         res.json({
             ok: true,
             categoria: categoriaDB
-        })
+        });
 
 
-    })
+    });
 
 });
 

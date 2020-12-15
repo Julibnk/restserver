@@ -28,13 +28,13 @@ app.get('/productos/buscar/:termino' , verificaToken, (req, res) => {
                     err: {
                         message: 'No se han encontrado productos'
                     }
-                })
+                });
             }
 
             res.json({
                 ok: true, 
                 productos
-            })
+            });
 
         });
 
@@ -213,16 +213,16 @@ app.put('/producto/:id', verificaToken, (req, res) => {
                 err: {
                     message: 'Producto no encontrado'
                 }
-            })
+            });
         }
 
         res.json({
             ok: true,
             productoModificado
-        })
+        });
 
 
-    })
+    });
 
 
 });
@@ -246,7 +246,7 @@ app.delete('/producto/:id', verificaToken, (req, res) => {
                 err: {
                     message: 'Producto no encontrado'
                 }
-            })
+            });
         }
 
         if (!productoBorrado) {
@@ -255,13 +255,13 @@ app.delete('/producto/:id', verificaToken, (req, res) => {
                 err: {
                     message: 'Producto no encontrado'
                 }
-            })
+            });
         }
         res.json({
             ok: true,
             productoBorrado
 
-        })
+        });
     });
 
 });
